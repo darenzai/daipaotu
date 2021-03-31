@@ -13,11 +13,11 @@
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" size="small" element-loading-text="正在查询中。。。" border fit highlight-current-row>
 
-      <el-table-column align="center" label="品牌商ID" prop="id"/>
+      <el-table-column align="center" label="商户ID" prop="id"/>
 
-      <el-table-column align="center" label="品牌商名称" prop="name"/>
+      <el-table-column align="center" label="商户名称" prop="name"/>
 
-      <el-table-column align="center" property="picUrl" label="品牌商图片">
+      <el-table-column align="center" property="picUrl" label="商户首页图片">
         <template slot-scope="scope">
           <img v-if="scope.row.picUrl" :src="scope.row.picUrl" width="80">
         </template>
@@ -182,6 +182,7 @@ export default {
   methods: {
     init: function() {
       listCatAndAdmin().then(response => {
+        console.log(response.data.data.categoryList)
         this.categoryList = response.data.data.categoryList
         this.adminList = response.data.data.adminList
       })

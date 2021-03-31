@@ -40,17 +40,19 @@ public class AdminBrandService {
 			l1CatVo.setValue(l1.getId());
 			l1CatVo.setLabel(l1.getName());
 
-			List<DtsCategory> l2CatList = categoryService.queryByPid(l1.getId());
-			List<CatVo> children = new ArrayList<CatVo>(l2CatList == null ? 0 : l2CatList.size());
-			for (DtsCategory l2 : l2CatList) {
-				CatVo l2CatVo = new CatVo();
-				l2CatVo.setValue(l2.getId());
-				l2CatVo.setLabel(l2.getName());
-				children.add(l2CatVo);
-			}
-			l1CatVo.setChildren(children);
+			//List<DtsCategory> l2CatList = categoryService.queryByPid(l1.getId());
+//			List<CatVo> children = new ArrayList<CatVo>(l2CatList == null ? 0 : l2CatList.size());
+//			for (DtsCategory l2 : l2CatList) {
+//				CatVo l2CatVo = new CatVo();
+//				l2CatVo.setValue(l2.getId());
+//				l2CatVo.setLabel(l2.getName());
+//				System.out.println(l2.getName());
+//				children.add(l2CatVo);
+//			}
+//			l1CatVo.setChildren(children);
 
 			categoryList.add(l1CatVo);
+			//System.out.println(categoryList.toArray());
 		}
 		
 		//系统用户

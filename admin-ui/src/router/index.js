@@ -159,7 +159,7 @@ export const asyncRouterMap = [
     alwaysShow: true,
     name: 'mallManage',
     meta: {
-      title: '商场管理',
+      title: '餐厅管理',
       icon: 'chart'
     },
     children: [
@@ -168,7 +168,7 @@ export const asyncRouterMap = [
         component: () => import('@/views/mall/region'),
         name: 'region',
         meta: {
-          title: '行政区域',
+          title: '区域',
           noCache: true
         }
       },
@@ -178,7 +178,7 @@ export const asyncRouterMap = [
         name: 'brand',
         meta: {
           perms: ['GET /admin/brand/list', 'POST /admin/brand/create', 'GET /admin/brand/read', 'POST /admin/brand/update', 'POST /admin/brand/delete'],
-          title: '品牌制造商',
+          title: '商户管理',
           noCache: true
         }
       },
@@ -188,7 +188,7 @@ export const asyncRouterMap = [
         name: 'category',
         meta: {
           perms: ['GET /admin/category/list', 'POST /admin/category/create', 'GET /admin/category/read', 'POST /admin/category/update', 'POST /admin/category/delete'],
-          title: '商品类目',
+          title: '商户类目',
           noCache: true
         }
       },

@@ -53,6 +53,7 @@ public class StorageService {
 		storage.store(inputStream, contentLength, contentType, key);
 
 		String url = generateUrl(key);
+		System.out.println(url);
 		DtsStorage storageInfo = new DtsStorage();
 		storageInfo.setName(fileName);
 		storageInfo.setSize((int) contentLength);

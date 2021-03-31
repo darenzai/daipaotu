@@ -24,6 +24,7 @@ public class StorageAutoConfiguration {
 		if (active.equals("local")) {
 			storageService.setStorage(localStorage());
 		} else if (active.equals("aliyun")) {
+			System.out.println("采用阿里云");
 			storageService.setStorage(aliyunStorage());
 		} else if (active.equals("tencent")) {
 			storageService.setStorage(tencentStorage());

@@ -192,6 +192,7 @@ public class AdminBrandController {
 	
 	@GetMapping("/catAndAdmin")
 	public Object catAndAdmin() {
+		//System.out.println("【请求开始】商场管理->品牌管理->获取目录与管理用户");
 		logger.info("【请求开始】商场管理->品牌管理->获取目录与管理用户");
 		return adminBrandService.catAndAdmin();
 	}
