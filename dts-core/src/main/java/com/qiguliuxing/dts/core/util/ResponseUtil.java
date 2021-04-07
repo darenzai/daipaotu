@@ -35,6 +35,8 @@ import java.util.Map;
  * <li>7xx，管理后台后端业务错误码， 具体见Dts-wx-api模块的WxResponseCode。
  * </ul>
  */
+
+//总返回数据工具类
 public class ResponseUtil {
 	public static Object ok() {
 		Map<String, Object> obj = new HashMap<String, Object>();

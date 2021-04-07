@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,7 @@ import com.qiguliuxing.dts.core.validator.Sort;
 import com.qiguliuxing.dts.db.domain.DtsAd;
 import com.qiguliuxing.dts.db.service.DtsAdService;
 
+@Api(tags = "广告添加删除管理")
 @RestController
 @RequestMapping("/admin/ad")
 @Validated
@@ -45,7 +48,7 @@ public class AdminAdController {
 			@Sort @RequestParam(defaultValue = "add_time") String sort,
 			@Order @RequestParam(defaultValue = "desc") String order) {
 		logger.info("【请求开始】推广管理->广告管理->查询,请求参数:name:{},content:{},page:{}", name, content, page);
-
+		//查询广告  广告进行分页处理
 		List<DtsAd> adList = adService.querySelective(name, content, page, limit, sort, order);
 		long total = PageInfo.of(adList).getTotal();
 		Map<String, Object> data = new HashMap<>();
@@ -67,18 +70,20 @@ public class AdminAdController {
 		}
 		return null;
 	}
-
+	//添加广告
+	@ApiImplicitParam(name = "admin:ad:create" ,value = "添加广告")
 	@RequiresPermissions("admin:ad:create")
 	@RequiresPermissionsDesc(menu = { "推广管理", "广告管理" }, button = "添加")
 	@PostMapping("/create")
 	public Object create(@RequestBody DtsAd ad) {
 		logger.info("【请求开始】推广管理->广告管理->添加,请求参数:ad:{}", JSONObject.toJSONString(ad));
-
+		//进行数据验证 判断
 		Object error = validate(ad);
 		if (error != null) {
 			logger.error("广告管理 添加校验不通过!");
 			return error;
 		}
+		//如果数据没问题则进行添加
 		adService.add(ad);
 
 		logger.info("【请求结束】推广管理->广告管理->添加,响应结果:{}", JSONObject.toJSONString(ad));

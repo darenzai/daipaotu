@@ -30,15 +30,20 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
-//		filterChainDefinitionMap.put("/admin/auth/login", "anon");
-//		filterChainDefinitionMap.put("/admin/auth/401", "anon");
-//		filterChainDefinitionMap.put("/admin/auth/index", "anon");
-//		filterChainDefinitionMap.put("/admin/auth/403", "anon");
-//
-//		filterChainDefinitionMap.put("/admin/**", "authc");
-//		shiroFilterFactoryBean.setLoginUrl("/admin/auth/401");
-//		shiroFilterFactoryBean.setSuccessUrl("/admin/auth/index");
-//		shiroFilterFactoryBean.setUnauthorizedUrl("/admin/auth/403");
+		filterChainDefinitionMap.put("/demo/swagger-ui.html", "anon");
+		filterChainDefinitionMap.put("/swagger-ui.html/**", "anon");
+		filterChainDefinitionMap.put("/webjars/**", "anon");
+		filterChainDefinitionMap.put("/v2/**", "anon");
+		filterChainDefinitionMap.put("/swagger-resources/**", "anon");
+
+		filterChainDefinitionMap.put("/admin/auth/401", "anon");
+		filterChainDefinitionMap.put("/admin/auth/index", "anon");
+		filterChainDefinitionMap.put("/admin/auth/403", "anon");
+
+		filterChainDefinitionMap.put("/admin/**", "anon");
+		shiroFilterFactoryBean.setLoginUrl("/admin/auth/401");
+		shiroFilterFactoryBean.setSuccessUrl("/admin/auth/index");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/admin/auth/403");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}

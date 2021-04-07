@@ -407,6 +407,16 @@ export const asyncRouterMap = [
         }
       },
       {
+        path: 'merchant',
+        component: () => import('@/views/sys/merchant'),
+        name: 'admin',
+        meta: {
+          perms: ['GET /admin/admin/list', 'POST /admin/admin/create', 'POST /admin/admin/update', 'POST /admin/admin/delete'],
+          title: '商户管理',
+          noCache: true
+        }
+      },
+      {
         path: 'role',
         component: () => import('@/views/sys/role'),
         name: 'role',

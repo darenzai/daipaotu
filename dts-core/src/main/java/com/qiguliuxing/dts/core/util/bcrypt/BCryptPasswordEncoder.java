@@ -61,7 +61,7 @@ public class BCryptPasswordEncoder {
 		this.strength = strength;
 		this.random = random;
 	}
-
+	//对密码进行加密处理
 	public String encode(CharSequence rawPassword) {
 		String salt;
 		if (strength > 0) {

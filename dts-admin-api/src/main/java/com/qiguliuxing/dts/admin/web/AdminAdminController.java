@@ -85,7 +85,7 @@ public class AdminAdminController {
 	@PostMapping("/create")
 	public Object create(@RequestBody DtsAdmin admin) {
 		logger.info("【请求开始】系统管理->管理员管理->添加,请求参数:{}", JSONObject.toJSONString(admin));
-
+		System.out.println(admin);
 		Object error = validate(admin);
 		if (error != null) {
 			return error;
@@ -98,7 +98,10 @@ public class AdminAdminController {
 			return AdminResponseUtil.fail(ADMIN_NAME_EXIST);
 		}
 
+
+		//获取传进来的初始密码
 		String rawPassword = admin.getPassword();
+		//使用 BCryptPasswordEncoder加密、验证策略
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode(rawPassword);
 		admin.setPassword(encodedPassword);
