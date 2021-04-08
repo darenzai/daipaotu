@@ -82,7 +82,7 @@ public class AdminMerchantController {
     @GetMapping("getMerchantInfo/{id}")
     public Object getChapterInfo(@PathVariable int id) {
         if(id>0){
-            DtsMerchant dtsMerchant = dtsMerchantService.selectById(id);
+            DtsMerchant dtsMerchant = dtsMerchantService.selectMerchantById(id);
             System.out.println(dtsMerchant);
             return  ResponseUtil.ok(dtsMerchant);
         }else{

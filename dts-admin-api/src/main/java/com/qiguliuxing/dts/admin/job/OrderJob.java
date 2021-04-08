@@ -67,7 +67,7 @@ public class OrderJob {
 				Integer productId = orderGoods.getProductId();
 				Short number = orderGoods.getNumber();
 				if (productService.addStock(productId, number) == 0) {
-					throw new RuntimeException("商品货品库存增加失败");
+					//throw new RuntimeException("商品货品库存增加失败");
 				}
 			}
 			logger.info("订单 ID=" + order.getId() + " 已经超期自动取消订单");

@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface DtsMerchantMapper extends BaseMapper<DtsMerchant> {
 
-
+    int selectMerchantById(Integer id);
     List<DtsMerchant> selectByAll();
 
     int logicalDeleteByPrimaryKey(Integer id);
@@ -21,4 +21,6 @@ public interface DtsMerchantMapper extends BaseMapper<DtsMerchant> {
 
     int insertSelective(DtsMerchant dtsMerchant);
     int addMerchant(DtsMerchant dtsMerchant);
+
+    List<DtsMerchant> selectByName(String username);
 }

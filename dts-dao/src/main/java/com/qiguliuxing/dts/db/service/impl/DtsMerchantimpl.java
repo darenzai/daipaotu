@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.qiguliuxing.dts.db.dao.DtsMerchantMapper;
+import com.qiguliuxing.dts.db.domain.DtsAdmin;
 import com.qiguliuxing.dts.db.domain.DtsAdminExample;
 import com.qiguliuxing.dts.db.domain.DtsMerchant;
 import com.qiguliuxing.dts.db.service.DtsMerchantService;
@@ -42,7 +43,7 @@ public class DtsMerchantimpl  extends ServiceImpl<DtsMerchantMapper, DtsMerchant
     }
 
     @Override
-    public DtsMerchant selectById(int id) {
+    public DtsMerchant selectMerchantById(int id) {
         return dtsMerchantMapper.selectById(id);
     }
 
@@ -59,6 +60,14 @@ public class DtsMerchantimpl  extends ServiceImpl<DtsMerchantMapper, DtsMerchant
     @Override
     public int addMerchant(DtsMerchant dtsMerchant) {
         return dtsMerchantMapper.addMerchant(dtsMerchant);
+    }
+
+    @Override
+    public List<DtsMerchant> findMerchant(String username) {
+
+
+            return dtsMerchantMapper.selectByName(username);
+
     }
 
 

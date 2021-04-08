@@ -61,7 +61,9 @@
             <el-option v-for="item in adminList" :key="item.value" :label="item.label" :value="item.value"/>
           </el-select>
         </el-form-item>
-
+        <el-form-item label="管理员密码" prop="password">
+          <el-input v-model="dataForm.password" type="password" auto-complete="off"/>
+        </el-form-item>
         <el-form-item label="介绍" prop="simpleDesc">
           <el-input v-model="dataForm.desc"/>
         </el-form-item>
@@ -146,6 +148,7 @@ export default {
         id: undefined,
         name: '',
         desc: '',
+        password: '',
         floorPrice: undefined,
         picUrl: undefined,
         categoryIds: [],

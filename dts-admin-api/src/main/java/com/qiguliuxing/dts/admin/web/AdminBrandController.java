@@ -8,6 +8,9 @@ import java.util.Map;
 
 import javax.validation.constraints.NotNull;
 
+import com.qiguliuxing.dts.core.util.bcrypt.BCryptPasswordEncoder;
+import com.qiguliuxing.dts.db.domain.DtsMerchant;
+import com.qiguliuxing.dts.db.service.DtsMerchantService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +47,9 @@ public class AdminBrandController {
 
 	@Autowired
 	private DtsBrandService brandService;
-	
+
+
+
 	@Autowired
 	private DtsCategoryService categoryService;
 	
@@ -108,7 +113,7 @@ public class AdminBrandController {
 		return null;
 	}
 
-	@RequiresPermissions("admin:brand:create")
+	//@RequiresPermissions("admin:brand:create")
 	@RequiresPermissionsDesc(menu = { "商场管理", "品牌管理" }, button = "添加")
 	@PostMapping("/create")
 	public Object create(@RequestBody DtsBrand brand) {
@@ -117,17 +122,22 @@ public class AdminBrandController {
 		if (error != null) {
 			return error;
 		}
-		
-		try {
-			//生成店铺的分享URL
-			String defaultCategory = brandService.getBrandCategory(brand.getDefaultCategoryId());
-			String shareUrl = qCodeService.createBrandImage(brand.getId(), brand.getPicUrl(), brand.getName(),defaultCategory);
-			brand.setShareUrl(shareUrl);
-		} catch (Exception e) {
-			logger.error("生成品牌商铺分享图URL出错：{}",e.getMessage());
-			e.printStackTrace();
-		}
-		
+		String rawPassword = brand.getPassword();
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		String encodedPassword = encoder.encode(rawPassword);
+		brand.setPassword(encodedPassword);
+
+
+		//TODO 待填入微信Key
+//		try {
+//			//生成店铺的分享URL
+//			String defaultCategory = brandService.getBrandCategory(brand.getDefaultCategoryId());
+//			//String shareUrl = qCodeService.createBrandImage(brand.getId(), brand.getPicUrl(), brand.getName(),defaultCategory);
+//			//brand.setShareUrl(shareUrl);
+//		} catch (Exception e) {
+//			logger.error("生成品牌商铺分享图URL出错：{}", e.getMessage());
+//			e.printStackTrace();
+//		}
 		brandService.add(brand);
 		logger.info("【请求结束】商场管理->品牌管理->添加:响应结果:{}", JSONObject.toJSONString(brand));
 		return ResponseUtil.ok(brand);

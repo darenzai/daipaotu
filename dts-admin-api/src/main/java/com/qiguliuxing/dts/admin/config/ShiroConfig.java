@@ -35,7 +35,6 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/webjars/**", "anon");
 		filterChainDefinitionMap.put("/v2/**", "anon");
 		filterChainDefinitionMap.put("/swagger-resources/**", "anon");
-
 		filterChainDefinitionMap.put("/admin/auth/401", "anon");
 		filterChainDefinitionMap.put("/admin/auth/index", "anon");
 		filterChainDefinitionMap.put("/admin/auth/403", "anon");

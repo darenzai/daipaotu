@@ -15,9 +15,11 @@ public interface DtsMerchantService extends IService<DtsMerchant> {
     List<DtsMerchant> selectByAll();
     int  deleteById(Integer id);
 
-    DtsMerchant selectById(int id);
+    DtsMerchant selectMerchantById(int id);
 
     boolean updateById_role(DtsMerchant dtsMerchant);
     Boolean updateByPrimaryKeySelective(DtsMerchant dtsMerchant);
     int addMerchant(DtsMerchant dtsMerchant);
+
+    List<DtsMerchant> findMerchant(String username);
 }

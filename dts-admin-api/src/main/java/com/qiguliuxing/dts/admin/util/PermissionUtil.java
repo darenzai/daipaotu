@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.qiguliuxing.dts.admin.annotation.RequiresPermissionsDesc;
 
+
+//权限管理工具
 public class PermissionUtil {
 
 	public static List<PermVo> listPermVo(List<Permission> permissions) {

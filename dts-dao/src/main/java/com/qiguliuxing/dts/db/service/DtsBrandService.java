@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.qiguliuxing.dts.db.domain.DtsMerchant;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.github.pagehelper.PageHelper;
@@ -15,6 +17,7 @@ import com.qiguliuxing.dts.db.domain.DtsBrand;
 import com.qiguliuxing.dts.db.domain.DtsBrand.Column;
 import com.qiguliuxing.dts.db.domain.DtsBrandExample;
 import com.qiguliuxing.dts.db.domain.DtsCategory;
+
 
 @Service
 public class DtsBrandService {
@@ -73,10 +76,23 @@ public class DtsBrandService {
 		brandMapper.logicalDeleteByPrimaryKey(id);
 	}
 
+	@Transactional
 	public void add(DtsBrand brand) {
+
+
 		brand.setAddTime(LocalDateTime.now());
 		brand.setUpdateTime(LocalDateTime.now());
 		brandMapper.insertSelective(brand);
+
+		//TODO 插入到商户管理员表中
+		DtsMerchant dtsMerchant =new DtsMerchant();
+		dtsMerchant.setUsername(brand.getName());
+		dtsMerchant.setDes(brand.getDesc());
+		dtsMerchant.setPassword(brand.getPassword());
+		dtsMerchant.setAvatar(brand.getPicUrl());
+		dtsMerchant.setId_brand(String.valueOf(brand.getId()));
+		brandMapper.addMerchant(dtsMerchant);
+
 	}
 
 	public List<DtsBrand> all() {

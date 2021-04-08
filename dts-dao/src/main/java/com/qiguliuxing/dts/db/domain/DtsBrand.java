@@ -1,5 +1,9 @@
 package com.qiguliuxing.dts.db.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -31,6 +35,7 @@ public class DtsBrand {
      *
      * @mbg.generated
      */
+    @TableId(type= IdType.AUTO)
     private Integer id;
 
     /**
@@ -113,6 +118,16 @@ public class DtsBrand {
      * @mbg.generated
      */
     private Integer adminId;
+
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     /**
      *

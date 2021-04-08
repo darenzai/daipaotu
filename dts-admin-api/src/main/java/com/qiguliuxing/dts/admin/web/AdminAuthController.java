@@ -64,7 +64,10 @@ public class AdminAuthController {
 
 		Subject currentUser = SecurityUtils.getSubject();
 		try {
-			currentUser.login(new UsernamePasswordToken(username, password));
+
+			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+			token.setRememberMe(true);
+			currentUser.login(token);
 		} catch (UnknownAccountException uae) {
 			logger.error("系统管理->用户登录  错误:{}", AdminResponseCode.ADMIN_INVALID_ACCOUNT_OR_PASSWORD.desc());
 			return AdminResponseUtil.fail(AdminResponseCode.ADMIN_INVALID_ACCOUNT_OR_PASSWORD);

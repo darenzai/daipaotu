@@ -242,6 +242,13 @@
       #{shopUrl,jdbcType=VARCHAR}, #{defaultCategoryId,jdbcType=INTEGER}, #{defaultPages,jdbcType=INTEGER}, 
       #{addPrecent,jdbcType=INTEGER})
   </insert>
+  <!-- 同时添加到管理员表中-->
+  <insert id="addMerchant" useGeneratedKeys="true" keyProperty="id" parameterType="com.qiguliuxing.dts.db.domain.DtsMerchant">
+        insert into dts_merchant(
+username,password,last_login_ip,last_login_time,avatar,add_time,update_time,des,tele,id_brand
+) VALUES(#{username},#{password},#{lastLoginIp},#{lastLoginTime},#{avatar},#{addTime},#{updateTime},#{des},#{tele},#{id_brand})
+    </insert>
+
   <insert id="insertSelective" parameterType="com.qiguliuxing.dts.db.domain.DtsBrand">
     <!--
       WARNING - @mbg.generated

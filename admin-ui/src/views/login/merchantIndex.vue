@@ -2,7 +2,7 @@
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <div class="title-container">
-        <h3 class="title">管理员登录</h3>
+        <h3 class="title">商户登录</h3>
       </div>
       <el-form-item prop="username">
         <span class="svg-container svg-container_login">
@@ -23,16 +23,6 @@
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">登录</el-button>
 
-      <div style="position:relative">
-        <div class="tips">
-          <span> 超级管理员用户名: dtsadmin</span>
-          <span> 超级管理员用户名：dtsadmin</span>
-        </div>
-        <div class="tips">
-          <span> 商城管理员用户名: dtsdemo</span>
-          <span> 商城管理员用户名：dtsdemo</span>
-        </div>
-      </div>
     </el-form>
 
   </div>
@@ -44,14 +34,14 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (validateUsername == null) {
-        callback(new Error('请输入正确的管理员用户名'))
+        callback(new Error('请输入正确的商户用户名'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('管理员密码长度应大于6'))
+        callback(new Error('商户密码长度应大于6'))
       } else {
         callback()
       }
